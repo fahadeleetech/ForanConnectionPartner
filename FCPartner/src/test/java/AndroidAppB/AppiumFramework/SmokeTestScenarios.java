@@ -6,13 +6,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import AndroidAppB.AppiumFramework.Base;
-import PageObjects.LoginScreen;
+import PageObjects.LoginScreenPo;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
 public class SmokeTestScenarios extends Base{
 	public static AndroidDriver<AndroidElement> driver;
-	public static LoginScreen login;
+	public static LoginScreenPo login;
 
 	@BeforeClass
 	public void setUp() throws IOException, InterruptedException
@@ -22,7 +22,7 @@ public class SmokeTestScenarios extends Base{
 		service = startServer();
 		driver = capabilities("appB");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		login = new LoginScreen(driver);
+		login = new LoginScreenPo(driver);
 		
 	}
 
