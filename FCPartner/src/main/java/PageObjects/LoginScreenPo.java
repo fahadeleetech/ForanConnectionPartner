@@ -29,7 +29,7 @@ public class LoginScreenPo {
 	{
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
-	@AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='WHILE USING THE APP']")
 	public WebElement allowbtn;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/textinput_error")
 	public WebElement errorMessage;
