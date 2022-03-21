@@ -15,7 +15,8 @@ public class MyAccount {
 	
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/cardview")
 	public WebElement profileimage;
-
+	@AndroidFindBy(id = "com.el33tech.servicesquad:id/linear_address")
+	public WebElement businessDetail;
 	
 
 }
