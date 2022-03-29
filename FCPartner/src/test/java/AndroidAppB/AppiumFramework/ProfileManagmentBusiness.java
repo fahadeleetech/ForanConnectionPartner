@@ -80,7 +80,15 @@ public class ProfileManagmentBusiness extends Base {
 		Bprofile.address.click();
 	}
 	@Test (priority=5)
+	public static void save() {
+	       Bprofile.editsavedeletebtn.click();
+	       String toastMessage= Bprofile.updateToastMessage.getAttribute("name");
+			Assert.assertEquals(toastMessage, "Details Updated Successfully");
+	}
+
+	@Test (priority=6)
 	public static void businessLocation() {
+		Bprofile.editsavedeletebtn.click();
 		Bprofile.location.click();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
 		Bprofile.adjustfrommap.click();
@@ -97,40 +105,23 @@ public class ProfileManagmentBusiness extends Base {
 			Bprofile.location.click();
 		
 	}
-	@Test (priority=6)
+	@Test (priority=7)
 	public static void skillSelected() { 
 		Bprofile.skill.click();
 	   selectedSkill = Bprofile.selectedSkill.getAttribute("text");
 		System.out.println(selectedSkill +" "+ "skill is selected during Registration");
 	}
-	@Test (priority=7)
+	@Test (priority=8)
 	public static void skillscrollone() {
 		
 		Bprofile.updateSkill.click();
 		//androidx.recyclerview.widget.RecyclerView
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		WebElement sc=driver.findElementByXPath("//androidx.recyclerview.widget.RecyclerView[@bounds='[75,387][1005,1697]']");
-		Dimension dm = sc.getSize(); 
-		int startX = (int) (dm.width*0.5); 
-		int startY = (int) (dm.height*0.8); 
-		int endX = (int) (dm.width*0.2); 
-		int endY = (int) (dm.height*0.2); 
-		AndroidTouchAction ta = new AndroidTouchAction(driver);
-		ta.press(PointOption.point(startX, startY)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
-		.moveTo(PointOption.point(endX,endY) ).release().perform();
+		Bprofile.updateskillscroll(driver);
 	}
 	@Test (priority=9)
 	public static void skillscrolltwo() {
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		WebElement sc=driver.findElementByXPath("//androidx.recyclerview.widget.RecyclerView[@bounds='[75,387][1005,1697]']");
-		Dimension dm = sc.getSize(); 
-		int startX = (int) (dm.width*0.5); 
-		int startY = (int) (dm.height*0.8); 
-		int endX = (int) (dm.width*0.2); 
-		int endY = (int) (dm.height*0.2); 
-		AndroidTouchAction ta = new AndroidTouchAction(driver);
-		ta.press(PointOption.point(startX, startY)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
-		.moveTo(PointOption.point(endX,endY) ).release().perform();
+		Bprofile.updateskillscroll(driver);
 	}
 	/*	@Test (priority=9)
 	public static void cookverification() 
@@ -186,6 +177,8 @@ public class ProfileManagmentBusiness extends Base {
 		 selectedSkill = Bprofile.selectedSkill.getAttribute("text");
 		 Assert.assertEquals(updateSkilltext, selectedSkill);
 			System.out.println(selectedSkill +" "+ "skill updated");	
+			String toastMessage= Bprofile.updateToastMessage.getAttribute("name");
+			Assert.assertEquals(toastMessage, "Skills Updated Successfully");
 	}
 	@Test (priority=14)
 	public static void updateSkillToCook() {
@@ -205,6 +198,8 @@ public class ProfileManagmentBusiness extends Base {
 		 selectedSkill = Bprofile.selectedSkill.getAttribute("text");
 		 Assert.assertEquals(updateSkilltext, selectedSkill);
 			System.out.println(selectedSkill +" "+ "skill updated");	
+			String toastMessage= Bprofile.updateToastMessage.getAttribute("name");
+			Assert.assertEquals(toastMessage, "Skills Updated Successfully");
 			Bprofile.skill.click();
 	}
 	@Test (priority=15)
@@ -215,6 +210,7 @@ public class ProfileManagmentBusiness extends Base {
 		Bprofile.allowbtn.click();
 		Bprofile.checkboximage.click();
 		Bprofile.applyimage.click();
+		
 	}
 	@Test (priority=16)
 	public static void deleteImagePortfolio() {
@@ -223,13 +219,15 @@ public class ProfileManagmentBusiness extends Base {
 		Bprofile.selectfirstImage.click();
 		Bprofile.editsavedeletebtn.click();
 		Bprofile.deletebtn.click();
+		 String toastMessage= Bprofile.updateToastMessage.getAttribute("name");
+			Assert.assertEquals(toastMessage, "Deleted Successfully!");
 		Bprofile.backbtn.click();
 		Bprofile.portfolio.click();
 	}
 	@Test (priority=17)
-	public static void save() {
+	public static void saveDetail() {
 	       Bprofile.editsavedeletebtn.click();
+	       String toastMessage= Bprofile.updateToastMessage.getAttribute("name");
+			Assert.assertEquals(toastMessage, "Details Updated Successfully");
 	}
-	
-		
 }

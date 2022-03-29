@@ -1,13 +1,19 @@
 package PageObjects;
 
+import static java.time.Duration.ofSeconds;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class BusinessProfile {
 	public String BusinessName= "El33tech lahore";
@@ -19,6 +25,8 @@ public class BusinessProfile {
 	{
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
+	@AndroidFindBy(xpath = "//android.widget.Toast[1]")
+	public WebElement updateToastMessage;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/linear_skills")
 	public WebElement skill;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/linear_b_loc")
@@ -127,10 +135,11 @@ public class BusinessProfile {
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='WHILE USING THE APP']")
 	public WebElement While;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='ALLOW']")
-	public WebElement allowbtn;
+	public WebElement allowbtn1;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='While using the app']")
 	public WebElement whilesmall;
-	
+	@AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
+	public WebElement allowbtn;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/add_new_portfolio")
 	public WebElement uploadPortfolio;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/name")
@@ -143,6 +152,16 @@ public class BusinessProfile {
     public Boolean verifymaid() {
    	 return relative13.findElement(By.id("com.el33tech.servicesquad:id/iv_tick")).isDisplayed();
    }
-    
+    public void updateskillscroll(AndroidDriver driver) {
+		WebElement sc=driver.findElementByXPath("//androidx.recyclerview.widget.RecyclerView[@bounds='[75,387][1005,1697]']");
+		Dimension dm = sc.getSize(); 
+		int startX = (int) (dm.width*0.5); 
+		int startY = (int) (dm.height*0.8); 
+		int endX = (int) (dm.width*0.2); 
+		int endY = (int) (dm.height*0.2); 
+		AndroidTouchAction ta = new AndroidTouchAction(driver);
+		ta.press(PointOption.point(startX, startY)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
+		.moveTo(PointOption.point(endX,endY) ).release().perform();
+	}
 	
 }
