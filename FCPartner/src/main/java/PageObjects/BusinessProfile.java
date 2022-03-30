@@ -19,8 +19,8 @@ public class BusinessProfile {
 	public String BusinessName= "El33tech lahore";
 	public String BusinessAbout = "Providing Electrician services";
 	public String   BusinessStart = "Mon, 14 Mar 2022";
-	public String setLocation       = "Block N Gulberg III, Lahore, Punjab, Pakistan";
-	public String Location = "Lahore";
+	public String setLocation       = "96, Awan Town, Lahore, Punjab 54780, Pakistan";
+	public String Location = "Awan Town";
 	public BusinessProfile(AndroidDriver<AndroidElement> driver)
 	{
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);

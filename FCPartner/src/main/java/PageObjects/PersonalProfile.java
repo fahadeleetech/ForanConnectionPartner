@@ -31,10 +31,10 @@ public class PersonalProfile {
 	public WebElement checkmark;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/button_apply")
 	public WebElement applybtn;
-	@AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
-	public WebElement allowbtn;
-	//@AndroidFindBy(xpath = "//android.widget.Button[@text='WHILE USING THE APP']")
+	//@AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
 	//public WebElement allowbtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='WHILE USING THE APP']")
+	public WebElement allowbtn;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/detail_nic")
 	public WebElement IDcard;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/tv_edit_save")
@@ -54,7 +54,7 @@ public class PersonalProfile {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update passport photo']")
 	public WebElement uploadphoto;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='ALLOW']")
-	public WebElement allowbtn1;
+	public WebElement allowPopUp;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/iv_back")
 	public WebElement backbtn;
 	

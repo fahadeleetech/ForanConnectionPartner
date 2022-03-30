@@ -88,7 +88,7 @@ public class ProfileManagmentPersonal extends Base{
 		.moveTo(PointOption.point(endX,endY) ).release().perform();
 		profile.uploadSideA.click();
 		profile.allowbtn.click();
-		profile.allowbtn1.click();
+		profile.allowPopUp.click();
 		profile.checkmark.click();
 		profile.applybtn.click();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
