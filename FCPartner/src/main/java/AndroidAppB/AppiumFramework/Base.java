@@ -2,6 +2,7 @@ package AndroidAppB.AppiumFramework;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.URL;
 import java.util.Properties;
@@ -86,8 +87,22 @@ public class Base {
 		
 		driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),cap);
 		return driver;
-	
-
+	}
+	public static AndroidDriver<AndroidElement> capb() throws MalformedURLException 
+	{
+	DesiredCapabilities caps = new DesiredCapabilities();
+	//caps.setCapability("Platform_Name", "ANDROID");
+	caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "ANDROID");
+	caps.setCapability(MobileCapabilityType.VERSION, "8.1.0");
+	caps.setCapability(MobileCapabilityType.DEVICE_NAME, "AndroidEmulator");
+	caps.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+	caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2"); 
+	caps.setCapability("appPackage", "com.google.android.apps.photos" );
+	caps.setCapability("appActivity", ".home.HomeActivity");
+	caps.setCapability("appium-version", "v1.20.2");
+		driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+	 return driver;
+	//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); 
 	}
 	
 	public static void getScreenShot(String testName) throws IOException 

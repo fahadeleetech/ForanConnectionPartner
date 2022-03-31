@@ -3,16 +3,16 @@ import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;
 import static java.time.Duration.ofSeconds;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import AndroidAppB.AppiumFramework.Base;
 import PageObjects.LoginScreenPo;
 import PageObjects.MyAccount;
 import io.appium.java_client.TouchAction;
@@ -28,8 +28,29 @@ public class SmokeTestScenarios extends Base{
 	public static PageObjects.BusinessProfile Businessprofile;
 	static String verifyskills;
 	static String selectedSkill;
-
+	static File classPath;
+	static File imgDir;
+	static File img;
+	private static By backupbtn = By.id("auto_backup_switch");
+	private static By touchoutside = By.id("touch_outside");
+	private static By keepoffBtn = By.xpath("//*[@text= 'KEEP OFF']");
+	private static By photo = By.xpath("//android.view.ViewGroup[@content-desc = 'Photo taken']");
 	@BeforeClass
+	public static void photos() throws IOException {
+		driver = capb();
+		classPath = new File(System.getProperty("user.dir"));
+		imgDir = new File("E:\\ForanConnectionPartner\\FCPartner\\src\\main\\java\\resources");
+		img = new File(imgDir.getCanonicalFile(),"image.png");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(backupbtn)).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(touchoutside)).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(keepoffBtn)).click();
+		
+		String android_photo_path = "mnt/sdcard/Pictures";
+	         driver.pushFile(android_photo_path+"/"+img.getName(),img);
+	}
+	@Test (priority=1)
+	
 	public void setUp() throws IOException, InterruptedException
 	{
 		Runtime.getRuntime().exec("taskkill /F /IM node.exe");
@@ -45,7 +66,7 @@ public class SmokeTestScenarios extends Base{
 		
 	}
 
-	@Test (priority=1)
+	@Test (priority=2)
 	public void loginWithExistingUser()
 		{
 		loginuser.SigninBtn.click();
@@ -54,7 +75,7 @@ public class SmokeTestScenarios extends Base{
 		loginuser.Submitbtn.click();
 		loginuser.allowbtn.click();
 		}
-	@Test (priority=2)
+	@Test (priority=3)
 	public void editVendorPersonalProfile() {
 		myjob.profileIcon.click();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -76,8 +97,8 @@ public class SmokeTestScenarios extends Base{
 			Assert.assertEquals(profile.CNIC, Cnic);
 			Assert.assertEquals(profile.phoneNum, phoneNumber);
 	} 
-	@Test (priority=3)
-	public static void  UploadSideAOfCnic() {
+	@Test (priority=4)
+	public static void  uploadSideAOfCnic() {
 		profile.scroll(driver);
 		profile.uploadSideA.click();
 		profile.allowbtn.click();
@@ -87,11 +108,10 @@ public class SmokeTestScenarios extends Base{
 		String toastMessage= profile.updateToastMessage.getAttribute("name");
 		Assert.assertEquals(toastMessage, "Updated Successfully");
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		//profile.tickmark.click();
 		
 	}
-	@Test (priority=4)
-	public static void UploadSideBOfCnic() {
+	@Test (priority=5)
+	public static void uploadSideBOfCnic() {
 		profile.scroll(driver);
 		profile.uploadSideB.click();
 		profile.checkmark.click();
@@ -100,8 +120,8 @@ public class SmokeTestScenarios extends Base{
 		String toastMessage= profile.updateToastMessage.getAttribute("name");
 		Assert.assertEquals(toastMessage, "Updated Successfully");
 	}
-	@Test (priority=5)
-	public static void UploadPasswordSideImage(){
+	@Test (priority=6)
+	public static void uploadPassportImage(){
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		profile.scroll(driver);
 		profile.uploadphoto.click();
@@ -113,7 +133,7 @@ public class SmokeTestScenarios extends Base{
 		profile.backbtn.click();
 	}
 	
-	@Test (priority= 6)
+	@Test (priority= 7)
 	public void editVendorBusinessProfile() {
 	account.businessDetail.click();
 	Businessprofile.editsavedeletebtn.click();
@@ -130,7 +150,7 @@ public class SmokeTestScenarios extends Base{
 	Assert.assertEquals(Businessprofile.BusinessStart, bDate);
 	Businessprofile.address.click();
 	}
-	@Test (priority=7)
+	@Test (priority=8)
 	public static void businessLocation() {
 		Businessprofile.location.click();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
@@ -153,7 +173,7 @@ public class SmokeTestScenarios extends Base{
 			Businessprofile.location.click();
 		
 	}
-	@Test (priority= 8) 
+	@Test (priority= 9) 
 	public static void skillSelected() { 
 		Businessprofile.skill.click();
 	   selectedSkill = Businessprofile.selectedSkill.getAttribute("text");
@@ -165,7 +185,7 @@ public class SmokeTestScenarios extends Base{
 		Businessprofile.updateskillscroll(driver);
 	}
 
-	@Test (priority=9)
+	@Test (priority=10)
 	public static void verificationofSelectedSkill() {
 	verifyskills =Businessprofile.relative10.findElement(By.id("com.el33tech.servicesquad:id/name")).getAttribute("text");
 		Assert.assertEquals(selectedSkill, verifyskills);
@@ -176,11 +196,11 @@ public class SmokeTestScenarios extends Base{
 	    	 System.out.println("This skill is not selected");
 	    }
 	}
-	@Test (priority=10)
+	@Test (priority=11)
 	public static void skillUnselect() {
 		Businessprofile.cookBtn.click();
 	}
-	@Test (priority=11)
+	@Test (priority=12)
 	public static void updateSkillToMaid() {
 		Businessprofile.maidBtn.click();
 		String updateSkilltext = Businessprofile.maidBtn.getAttribute("text");
@@ -197,7 +217,7 @@ public class SmokeTestScenarios extends Base{
 			String toastMessage= Businessprofile.updateToastMessage.getAttribute("name");
 			Assert.assertEquals(toastMessage, "Skills Updated Successfully");
 	}
-	@Test (priority=12)
+	@Test (priority=13)
 	public static void updateSkillToCook() {
 		Businessprofile.updateSkill.click();
 		Businessprofile.updateskillscroll(driver);
@@ -220,17 +240,15 @@ public class SmokeTestScenarios extends Base{
 			Assert.assertEquals(toastMessage, "Skills Updated Successfully");
 			
 	}
-	@Test (priority=13)
+	@Test (priority=14)
 	public static void portfolio() {
 		Businessprofile.portfolio.click();
 		Businessprofile.uploadPortfolio.click();
-		//Businessprofile.allowbtn.click();
-		//Businessprofile.allowbtn.click();
 		Businessprofile.checkboximage.click();
 		Businessprofile.applyimage.click();
 		
 	}
-	@Test (priority=14)
+	@Test (priority=15)
 	public static void deleteImagePortfolio() {
 		TouchAction ta = new TouchAction(driver); 
 		ta.longPress(longPressOptions().withElement(element(Businessprofile.selectfirstImage)).withDuration(ofSeconds(2))).release().perform();
