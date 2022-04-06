@@ -10,6 +10,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class ForgotPasswordPO{
 	
+	public String error = "Please enter a valid password!";
+	
 	
 	public ForgotPasswordPO(AndroidDriver<AndroidElement> driver)
 	{
@@ -45,6 +47,21 @@ public class ForgotPasswordPO{
 	
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/container")// Blank Click
 	public WebElement BlankClick;
+	
+	@AndroidFindBy(id = "com.el33tech.servicesquad:id/detail_phone")
+	public WebElement LoginPhoneNumber;
+	
+	@AndroidFindBy(id = "com.el33tech.servicesquad:id/et_pass")
+	public WebElement LoginPassword;
+	
+	@AndroidFindBy(id = "com.el33tech.servicesquad:id/bt_submit")
+	public WebElement LoginSigninButton;
+	
+	@AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
+	public WebElement LoginAllowButton;
+	
+	@AndroidFindBy(id = "com.el33tech.servicesquad:id/textinput_error")
+	public WebElement ErrorMessage;
 	
 	
 

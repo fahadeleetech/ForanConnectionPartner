@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ public class ForgotPassword extends Base{
 	}
 	
 
-	@Test 
+	@Test (priority=1)
 	public void ForgotPassword() throws InterruptedException
 		{
 		
@@ -48,14 +49,49 @@ public class ForgotPassword extends Base{
 		Thread.sleep(5000);
 		ForgotPasswordPO.Verify.click();
 				
-		ForgotPasswordPO.Password.sendKeys("Haseeb@6");
-		ForgotPasswordPO.ConfirmPassword.sendKeys("Haseeb@6");
+		ForgotPasswordPO.Password.sendKeys("Haseeb@12");		// new password
+		ForgotPasswordPO.ConfirmPassword.sendKeys("Haseeb@12");	// new password
 		ForgotPasswordPO.LastSubmitButton.click();
 		
 				
 		
 		}
 	
+	@Test (priority=2)
+	public void loginWithOldPassword()
+		{
+		
+		
+		ForgotPasswordPO.LoginPhoneNumber.sendKeys("3331100082");
+		
+		ForgotPasswordPO.LoginPassword.sendKeys("Haseeb@11");
+		
+		ForgotPasswordPO.LoginSigninButton.click();			
+		//ForgotPasswordPO.LoginAllowButton.click();
+		
+		}
 	
-
+	@Test (priority=3)
+	public void verifyOldPasswordError()
+		{
+		
+		String error = ForgotPasswordPO.ErrorMessage.getAttribute("text");
+		Assert.assertEquals(error , ForgotPasswordPO.error);
+		}
+	
+	@Test (priority=4)
+	public void loginWithNewPassword()
+		{
+		
+		
+		ForgotPasswordPO.LoginPhoneNumber.sendKeys("3331100082");
+		
+		
+		ForgotPasswordPO.LoginPassword.sendKeys("Haseeb@12");      // new password
+		
+		ForgotPasswordPO.LoginSigninButton.click();			
+		ForgotPasswordPO.LoginAllowButton.click();
+		
+		}
+	
 }
