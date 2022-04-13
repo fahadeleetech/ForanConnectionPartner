@@ -69,10 +69,12 @@ public class BusinessProfile {
 	public WebElement maidBtn;
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='10']")
 	public WebElement relative10;
-	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='12']")
-	public WebElement relative12;
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='11']")
+	public WebElement relative11;
 	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='13']")
 	public WebElement relative13;
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@index='14']")
+	public WebElement relative14;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Gardener']")
 	public WebElement gardenerBtn;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Cook']")
@@ -147,10 +149,10 @@ public class BusinessProfile {
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/t_aa")
 	public WebElement selectedSkill;
     public Boolean verifycook() {
-    	 return relative10.findElement(By.id("com.el33tech.servicesquad:id/iv_tick")).isDisplayed();
+    	 return relative11.findElement(By.id("com.el33tech.servicesquad:id/iv_tick")).isDisplayed();
     }
     public Boolean verifymaid() {
-   	 return relative13.findElement(By.id("com.el33tech.servicesquad:id/iv_tick")).isDisplayed();
+   	 return relative14.findElement(By.id("com.el33tech.servicesquad:id/iv_tick")).isDisplayed();
    }
     public void updateskillscroll(AndroidDriver driver) {
 		WebElement sc=driver.findElementByXPath("//androidx.recyclerview.widget.RecyclerView[@bounds='[75,387][1005,1697]']");

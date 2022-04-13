@@ -17,7 +17,7 @@ import io.appium.java_client.touch.offset.PointOption;
 public class PersonalProfile {
 	public String FristN = "AzeemaQ";
 	public String LastN = "QadeerA";
-	public String phoneNum = "3331100062";
+	public String phoneNum = "3214204308";
 	public String CNIC = "1234545677879";
 	public PersonalProfile(AndroidDriver<AndroidElement> driver)
 	{
@@ -25,7 +25,7 @@ public class PersonalProfile {
 	}
 	@AndroidFindBy(xpath = "//android.widget.Toast[1]")
 	public WebElement updateToastMessage;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@content-desc=\"Crop\"]")
+	@AndroidFindBy(id = "com.el33tech.servicesquad:id/menu_crop")
 	public WebElement tickmark;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/check_view")
 	public WebElement checkmark;

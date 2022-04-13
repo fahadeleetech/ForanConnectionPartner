@@ -1,23 +1,23 @@
 package AndroidAppB.AppiumFramework;
-import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
-import static io.appium.java_client.touch.offset.ElementOption.element;
-import static java.time.Duration.ofSeconds;
+//import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
+//import static io.appium.java_client.touch.offset.ElementOption.element;
+//import static java.time.Duration.ofSeconds;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+//import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import AndroidAppB.AppiumFramework.Base;
+//import AndroidAppB.AppiumFramework.Base;
 import PageObjects.LoginScreenPo;
 import PageObjects.MyAccount;
-import io.appium.java_client.TouchAction;
+//import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
@@ -59,7 +59,7 @@ public class SmokeTestScenarios extends Base{
 	@Test (priority=2)
 	public void editVendorPersonalProfile() {
 		myjob.profileIcon.click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		  account.profileimage.click();
 		  profile.editbtn.click();
 			profile.firstname.clear();
@@ -86,9 +86,9 @@ public class SmokeTestScenarios extends Base{
 		profile.allowPopUp.click();
 		profile.checkmark.click();
 		profile.applybtn.click();
-		//String toastMessage= profile.updateToastMessage.getAttribute("name");
-		//Assert.assertEquals(toastMessage, "Updated Successfully");
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		String toastMessage= profile.updateToastMessage.getAttribute("name");
+		Assert.assertEquals(toastMessage, "Updated Successfully");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//profile.tickmark.click();
 		
 	}
@@ -99,19 +99,19 @@ public class SmokeTestScenarios extends Base{
 		profile.checkmark.click();
 		profile.applybtn.click();
 		profile.tickmark.click();
-		//String toastMessage= profile.updateToastMessage.getAttribute("name");
-		//Assert.assertEquals(toastMessage, "Updated Successfully");
+		String toastMessage= profile.updateToastMessage.getAttribute("name");
+		Assert.assertEquals(toastMessage, "Updated Successfully");
 	}
 	@Test (priority=5)
-	public static void UploadPasswordSideImage(){
+	public static void UploadPassportSizeImage(){
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		profile.scroll(driver);
 		profile.uploadphoto.click();
 		profile.checkmark.click();
 		profile.applybtn.click();
 		profile.tickmark.click();
-		//String toastMessage= profile.updateToastMessage.getAttribute("name");
-		//Assert.assertEquals(toastMessage, "Updated Successfully");
+		String toastMessage= profile.updateToastMessage.getAttribute("name");
+		Assert.assertEquals(toastMessage, "Updated Successfully");
 		profile.backbtn.click();
 	}
 	
@@ -128,8 +128,8 @@ public class SmokeTestScenarios extends Base{
 	Assert.assertEquals(Businessprofile.BusinessName, bName);
 	String aboutB = Businessprofile.AboutBusiness.getAttribute("text");
 	Assert.assertEquals(Businessprofile.BusinessAbout, aboutB);
-	String bDate = Businessprofile.startdate.getAttribute("text");
-	Assert.assertEquals(Businessprofile.BusinessStart, bDate);
+	//String bDate = Businessprofile.startdate.getAttribute("text");
+	//Assert.assertEquals(Businessprofile.BusinessStart, bDate);
 	Businessprofile.address.click();
 	}
 	@Test (priority=7)
@@ -169,7 +169,7 @@ public class SmokeTestScenarios extends Base{
 
 	@Test (priority=9)
 	public static void verificationofSelectedSkill() {
-	verifyskills =Businessprofile.relative10.findElement(By.id("com.el33tech.servicesquad:id/name")).getAttribute("text");
+	verifyskills =Businessprofile.relative11.findElement(By.id("com.el33tech.servicesquad:id/name")).getAttribute("text");
 		Assert.assertEquals(selectedSkill, verifyskills);
 		Boolean turefalse = Businessprofile.verifycook();
 		if(turefalse) {
@@ -232,7 +232,7 @@ public class SmokeTestScenarios extends Base{
 		Businessprofile.applyimage.click();
 		
 	}
-	@Test (priority=14)
+	/*@Test (priority=14)
 	public static void deleteImagePortfolio() {
 		WebDriverWait waitprofileIcon = new WebDriverWait(driver, 10);
 		waitprofileIcon.until(ExpectedConditions.elementToBeClickable(Businessprofile.selectfirstImage));
@@ -246,5 +246,5 @@ public class SmokeTestScenarios extends Base{
 			Businessprofile.backbtn.click();
 			Businessprofile.portfolio.click();
 			profile.backbtn.click();
-	}
+	}*/
 }

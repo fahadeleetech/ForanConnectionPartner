@@ -16,8 +16,8 @@ public class LoginScreenPo {
 	public String ForgotpasswrodText = "Forgot password?";
 	public String Registertext = "Don't have an account? Register";
 	public String CountryCodeText = "(PK) +92";
-	public String user = "3331100062";
-	public String userpassword = "1234@Azs";
+	public String user = "3214204308";
+	public String userpassword = "webdir123R!";
 	public String minimumcharacter = "123";
 	public String ErrormsgonMinimumcharacter = "Requires a Password of minimum 8 characters";
 	public String invalidpasswordmsg ="Please enter a valid password!";
