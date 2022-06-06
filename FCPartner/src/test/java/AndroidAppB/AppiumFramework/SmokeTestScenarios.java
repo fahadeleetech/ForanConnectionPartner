@@ -50,6 +50,8 @@ public class SmokeTestScenarios extends Base{
 	@Test (priority=1)
 	public void loginWithExistingUser()
 		{
+		loginuser.callAllowBtn.click();
+		loginuser.callLogsAllowBtn.click();
 		loginuser.SigninBtn.click();
 		loginuser.PhonePlaceHolder.sendKeys(loginuser.user);
 		loginuser.Password.sendKeys(loginuser.userpassword);
@@ -68,7 +70,7 @@ public class SmokeTestScenarios extends Base{
 			profile.lastname.sendKeys(profile.LastN);
 			profile.savebtn.click();
 			String toastMessage= profile.updateToastMessage.getAttribute("name");
-			Assert.assertEquals(toastMessage, "Details Updated Successfully");
+			Assert.assertEquals(toastMessage, "Updated Successfully");
 			String FristNverification = profile.firstname.getAttribute("text"); 
 			String LastNverification = 	profile.lastname.getAttribute("text");
 			String phoneNumber = profile.phonenumber.getAttribute("text");

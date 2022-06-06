@@ -18,7 +18,7 @@ public class PersonalProfile {
 	public String FristN = "AzeemaQ";
 	public String LastN = "QadeerA";
 	public String phoneNum = "3214204308";
-	public String CNIC = "1234545677879";
+	public String CNIC = "3520205366495";
 	public PersonalProfile(AndroidDriver<AndroidElement> driver)
 	{
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -51,7 +51,7 @@ public class PersonalProfile {
 	public WebElement uploadSideA;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update side B photo']")
 	public WebElement uploadSideB;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update passport photo']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Update Photo']")
 	public WebElement uploadphoto;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='ALLOW']")
 	public WebElement allowPopUp;

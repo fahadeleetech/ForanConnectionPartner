@@ -31,6 +31,10 @@ public class LoginScreenPo {
 	}
 	//@AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
 	//public WebElement allowbtn;
+	@AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+	public WebElement callAllowBtn;
+	@AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
+	public WebElement callLogsAllowBtn;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='WHILE USING THE APP']")
 	public WebElement allowbtn;
 	@AndroidFindBy(id = "com.el33tech.servicesquad:id/textinput_error")
