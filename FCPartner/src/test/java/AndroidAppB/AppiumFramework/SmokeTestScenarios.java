@@ -137,9 +137,9 @@ public class SmokeTestScenarios extends Base{
 	@Test (priority=7)
 	public static void businessLocation() {
 		Businessprofile.location.click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
-		
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); 
 		Businessprofile.adjustfrommap.click();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		Businessprofile.removeText.click();
 		Businessprofile.searchBar.click();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
@@ -148,8 +148,7 @@ public class SmokeTestScenarios extends Base{
 		String suggestion = Businessprofile.suggestion.getAttribute("text");
 		Assert.assertEquals(Businessprofile.Location,suggestion );
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
-		Businessprofile.suggestion.click();
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
+		Businessprofile.suggestion.click(); 
 			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); 
 			Businessprofile.confirmbtn.click();
 		String address = Businessprofile.businessAddress.getAttribute("text");
@@ -162,8 +161,8 @@ public class SmokeTestScenarios extends Base{
 		Businessprofile.skill.click();
 	   selectedSkill = Businessprofile.selectedSkill.getAttribute("text");
 		System.out.println(selectedSkill +" "+ "skill is selected during Registration");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		Businessprofile.updateSkill.click();
-		//androidx.recyclerview.widget.RecyclerView
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		Businessprofile.updateskillscroll(driver);
 		Businessprofile.updateskillscroll(driver);
@@ -184,19 +183,13 @@ public class SmokeTestScenarios extends Base{
 	public static void skillUnselect() {
 		Businessprofile.cookBtn.click();
 	}
+	
 	@Test (priority=11)
 	public static void updateSkillToMaid() {
 		Businessprofile.maidBtn.click();
-		String updateSkilltext = Businessprofile.maidBtn.getAttribute("text");
-		Boolean truefalse = Businessprofile.verifymaid();
-		if(truefalse) {
-			System.out.println("Tick mark shown on skill"+" "+ updateSkilltext); }
-		else {
-	    	 System.out.println("This skill is not selected");
-	    }
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		Businessprofile.updatebtn.click();
 		 selectedSkill = Businessprofile.selectedSkill.getAttribute("text");
-		 Assert.assertEquals(updateSkilltext, selectedSkill);
 			System.out.println(selectedSkill +" "+ "skill updated");	
 			String toastMessage= Businessprofile.updateToastMessage.getAttribute("name");
 			Assert.assertEquals(toastMessage, "Skills Updated Successfully");
@@ -208,16 +201,9 @@ public class SmokeTestScenarios extends Base{
 		Businessprofile.updateskillscroll(driver);
 		Businessprofile.maidBtn.click();
 		Businessprofile.cookBtn.click();
-		String updateSkilltext = Businessprofile.cookBtn.getAttribute("text");
-		Boolean turefalse = Businessprofile.verifycook();
-		if(turefalse) {
-			System.out.println("Tick mark shown on skill"+" "+ updateSkilltext); }
-		else {
-	    	 System.out.println("This skill is not selected");
-	    }
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		Businessprofile.updatebtn.click();
 		 selectedSkill = Businessprofile.selectedSkill.getAttribute("text");
-		 Assert.assertEquals(updateSkilltext, selectedSkill);
 			System.out.println(selectedSkill +" "+ "skill updated");	
 			Businessprofile.skill.click();
 			String toastMessage= Businessprofile.updateToastMessage.getAttribute("name");
@@ -228,8 +214,6 @@ public class SmokeTestScenarios extends Base{
 	public static void portfolio() {
 		Businessprofile.portfolio.click();
 		Businessprofile.uploadPortfolio.click();
-		//Businessprofile.allowbtn.click();
-		//Businessprofile.allowbtn.click();
 		Businessprofile.checkboximage.click();
 		Businessprofile.applyimage.click();
 		
